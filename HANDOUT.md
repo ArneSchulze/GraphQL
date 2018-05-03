@@ -39,7 +39,7 @@ The main parts of every GraphQL-Service are:
 #### The GraphQL-Schema
 The Schema of a GraphQL-Service defines which queries are allowed, what types of data can be fetched 
 and what the relationships between these types are. It is defined using either the GraphQL-Syntax or
-a programming language specific pattern. When using the GraphQL-Syntax to define the syntax it is easier
+a programming language specific pattern. When using the GraphQL-Syntax to define the schema it is easier
 to reuse it, or to change the programming language later.  
 
 An example schema is:
@@ -118,7 +118,7 @@ Example Queries:
 ```
 //This query would execute the getAuthor-function of the Service and would return an author
 query getAuthor {
-    getAuthor(name: "Donald Trump" {
+    getAuthor(name: "Donald Trump") {
         id
         name
         email
