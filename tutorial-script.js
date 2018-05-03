@@ -48,7 +48,7 @@ async function getAuthorsByIds(ids, mongo) {
 }
 
 async function getPostByTitle(title, mongo) {
-  return mongo.collection('posts').find({}, { title: title }).map(fromMongo).toArray();
+  return mongo.collection('posts').find({ title: title }).map(fromMongo).toArray();
 }
 
 async function insertAuthor(author, mongo) {
