@@ -93,7 +93,7 @@ These Resolvers can interact with any kind of backend/database/storage engine to
 Because they are mostly represented by functions they are GraphQL-Implementation and programming
 language specific.  
 
-Example Resolvers:
+Example Resolvers (in pseudo code): 
 ```javascript
 //This function would interact with a possible SQL-Database and answer with a Promise
 async function (parent, { name }, context) => {
@@ -169,9 +169,9 @@ query getAuthor($name: String) {
 ```
 Example Requests:
 ```
-GET \path\to\your\api?query={{ your query }}&variables={{ your variables }}
+GET /path/to/your/api?query={{ your query }}&variables={{ your variables }}
 
-POST \path\to\your\api
+POST /path/to/your/api
 {
     "query": "{{ your query as string }}",
     "variables": {{ your variables as JSON-Object }}
