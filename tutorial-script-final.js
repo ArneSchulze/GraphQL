@@ -33,6 +33,7 @@ type Author {
 type Post {
 	id: ID!,
 	title: String!,
+	text: String!,
 	description: String,
 	authors: [Author]!
 }
