@@ -97,7 +97,7 @@ Example Resolvers (in pseudo code):
 ```javascript
 //This function would interact with a possible SQL-Database and answer with a Promise
 async function (parent, { name }, context) => {
-    return context.sql.execRa('SELECT * FROM authors WHERE name = %s', name);
+    return context.sql.exec('SELECT * FROM authors WHERE name = %s', name);
 }
 
 //This function would call a REST-Service to receive the queried data
