@@ -2,11 +2,11 @@
 
 ## Table of Contents
 
-1. [What is GraphQL?](what-is-graphql)
-2. [How does GraphQL work?](how-does-graphql-work)  
-3. [How can one use GraphQL?](how-can-one-use-graphql)
-4. [Working with GraphQL and NodeJS](working-with-graphql-and-nodejs)
-5. [References](references)  
+1. [What is GraphQL?](#what-is-graphql)
+2. [How does GraphQL work?](#how-does-graphql-work)  
+3. [How can one use GraphQL?](#how-can-one-use-graphql)
+4. [Working with GraphQL and NodeJS](#working-with-graphql-and-nodejs)
+5. [References](#references)  
 
 
 Because of the limited time I am just able to tell you about the standard and basic patterns of GraphQL.  
