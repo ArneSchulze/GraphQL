@@ -33,7 +33,7 @@ type Query {
 const resolvers = {
   Query: {
     hello: async (parent, input, context) => {
-        return hello;
+        return "Hello World";
     }
   }
 };
