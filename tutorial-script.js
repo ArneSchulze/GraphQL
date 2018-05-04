@@ -61,6 +61,22 @@ async function insertPost(post, mongo) {
   return fromMongo(await mongo.collection('posts').findOne({ _id: result.insertedId }))
 }
 
+async function deleteAuthor(id, mongo) {
+  return mongo.collection('authors').deleteOne({ _id: new ObjectID(id) }).ok;
+}
+
+async function deletePost(id, mongo) {
+  return mongo.collection('posts').deleteOne({ _id: new ObjectID(id) }).ok;
+}
+
+async function getAuthors(mongo) {
+  return mongo.collection('authors').find({}, {}).map(fromMongo).toArray();
+}
+
+async function getPosts(mongo) {
+  return mongo.collection('posts').find({}, {}).map(fromMongo).toArray();
+}
+
 export const schema = makeExecutableSchema({
   typeDefs,
   resolvers

@@ -29,7 +29,6 @@ type Author {
 	name: String!,
 	email: String
 }
-
 type Post {
 	id: ID!,
 	title: String!,
@@ -37,25 +36,27 @@ type Post {
 	description: String,
 	authors: [Author]!
 }
-
 input AuthorInput {
-	name: String!
+	name: String!,
+  email:String
 }
-
 input PostInput {
 	title: String!,
   description: String,
+	text: String!,
   authors: [ID!]!
 }
-
 type Query {
 	author(name: String!): [Author!]
   post(title: String!): [Post!]
+	posts: [Post!]
+	authors: [Author!]
 }
-
 type Mutation {
 	insertAuthor(author: AuthorInput!): Author
 	insertPost(post: PostInput!): Post
+	deleteAuthor(id: ID!): Boolean
+	deletePost(id: ID!): Boolean
 }
 `;
 
@@ -67,6 +68,12 @@ const resolvers = {
     },
     post: async (parent, { title }, context) => {
       return getPostByTitle(title, context.mongo);
+    },
+    authors: async (parent, input, context) => {
+      return getAuthors(context.mongo);
+    },
+    posts: async (parent, input, context) => {
+      return getPosts(context.mongo);
     }
   },
   Mutation: {
@@ -75,6 +82,12 @@ const resolvers = {
     },
     insertPost: async (parent, { post }, context) => {
       return insertPost(post, context.mongo);
+    },
+    deleteAuthor: async (parent, { id }, context) => {
+    	return deleteAuthor(id, context.mongo);
+  	},
+    deletePost: async (parent, { id }, context) => {
+      return deletePost(id, context.mongo);
     }
   },
   Post: {
@@ -105,6 +118,22 @@ async function insertAuthor(author, mongo) {
 async function insertPost(post, mongo) {
   var result = await mongo.collection('posts').insertOne(post);
   return fromMongo(await mongo.collection('posts').findOne({ _id: result.insertedId }))
+}
+
+async function deleteAuthor(id, mongo) {
+  return mongo.collection('authors').deleteOne({ _id: new ObjectID(id) }).ok;
+}
+
+async function deletePost(id, mongo) {
+  return mongo.collection('posts').deleteOne({ _id: new ObjectID(id) }).ok;
+}
+
+async function getAuthors(mongo) {
+  return mongo.collection('authors').find({}, {}).map(fromMongo).toArray();
+}
+
+async function getPosts(mongo) {
+  return mongo.collection('posts').find({}, {}).map(fromMongo).toArray();
 }
 
 export const schema = makeExecutableSchema({
