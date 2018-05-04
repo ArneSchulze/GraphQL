@@ -43,7 +43,7 @@ a programming language specific pattern. When using the GraphQL-Syntax to define
 to reuse it, or to change the programming language later.  
 
 An example schema is:
-```
+```graphql
 type Author {
    id: ID!
    name: String!
@@ -115,7 +115,7 @@ as `body` in POST-Request. When a query contains inputs it is often useful to se
 from the inputs. Therefore GraphQL has such a built-in pattern which allows to pass the variables separately as `JSON-Object` (See examples below).   
 
 Example Queries:
-```
+```graphql
 //This query would execute the getAuthor-function of the Service and would return an author
 query getAuthor {
     getAuthor(name: "Donald Trump") {
@@ -152,7 +152,7 @@ Example Result:
 }
 ```
 Variables example:
-```
+```graphql
 //This query declares the variable name and type at the top
 query getAuthor($name: String) {
     getAuthor(name: $name) {
